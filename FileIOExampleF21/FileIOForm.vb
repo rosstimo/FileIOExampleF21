@@ -45,26 +45,36 @@
     End Sub
 
     Sub ReadRecords()
-        Dim fileName As String = "../../exampleF21.txt"
+        Dim fileName As String = "../../XexampleF21.txt"
         Dim recordData As String
+
 
         Try
             FileOpen(1, fileName, OpenMode.Input)
 
-            For i = 0 To 14
-                Input(1, recordData)
-                Console.WriteLine(recordData)
-            Next
-            Do Until EOF(1)
-                Input(1, recordData)
-                Console.WriteLine(recordData)
-            Loop
-
         Catch notFound As System.IO.FileNotFoundException
-            MsgBox("oops that file doesn't exist")
+            'If the file does not exist open a dialog for user to choose file
+            'OpenFileDialog.InitialDirectory 
+            OpenFileDialog.FileName = "CoolFile.txt"
+            OpenFileDialog.Filter = "txt files (*.txt)|*.txt|image (*.jpg)|*.jpg|Soto (*.soto)|*.soto|All files (*.*)|*.*"
+
+
+            If OpenFileDialog.ShowDialog() = 1 Then
+                fileName = OpenFileDialog.FileName
+                FileOpen(1, fileName, OpenMode.Input)
+            End If
         Catch e As Exception
-            MsgBox("that was weird!")
+            MsgBox($"{e.GetType.FullName}:{vbCrLf}{e.Message}")
         End Try
+
+        'For i = 0 To 14
+        '    Input(1, recordData)
+        '    Console.WriteLine(recordData)
+        'Next
+        Do Until EOF(1)
+            Input(1, recordData)
+            Console.WriteLine(recordData)
+        Loop
 
         FileClose(1)
     End Sub
