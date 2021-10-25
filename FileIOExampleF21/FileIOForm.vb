@@ -2,8 +2,8 @@
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         'WriteFile()
         'AppendFile()
-        ReadRecords()
-        Me.Close()
+        'ReadRecords()
+        'Me.Close()
     End Sub
 
     Sub WriteFile()
@@ -21,7 +21,6 @@
         FileClose(1)
 
     End Sub
-
 
     Sub AppendFile()
         Dim fileName As String = "../../exampleF21.txt"
@@ -78,5 +77,49 @@
 
         FileClose(1)
     End Sub
+
+    Sub AddCustomer()
+        Dim fileName As String = "../../CustomerData.txt"
+        Dim fileNum As Integer = FreeFile()
+
+        FileOpen(fileNum, fileName, OpenMode.Append)
+        Write(fileNum, FirstNameTextBox.Text)
+        Write(fileNum, LastNameTextBox.Text)
+        WriteLine(fileNum)
+        FileClose(fileNum)
+
+    End Sub
+
+    Sub Display()
+        Dim fileName As String = "../../CustomerData.txt"
+        Dim fileNum As Integer = FreeFile()
+        Dim currentRecord As String
+        Dim formattedInfo As String
+
+        FileOpen(fileNum, fileName, OpenMode.Input)
+
+        Do Until EOF(fileNum)
+            Input(fileNum, currentRecord)
+            formattedInfo &= currentRecord
+            Input(fileNum, currentRecord)
+            formattedInfo &= currentRecord
+
+            DisplayListBox.Items.Add(formattedInfo)
+        Loop
+
+        FileClose(fileNum)
+
+    End Sub
+
+    Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
+        AddCustomer()
+        Display()
+    End Sub
+
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
+
+
 
 End Class
