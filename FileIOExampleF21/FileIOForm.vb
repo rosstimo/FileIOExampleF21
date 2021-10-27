@@ -1,9 +1,12 @@
 ﻿Public Class FileIOForm
+    Dim fileName As String = "../../UserData.txt"
+
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         'WriteFile()
         'AppendFile()
         'ReadRecords()
         'Me.Close()
+        Display()
     End Sub
 
     Sub WriteFile()
@@ -44,7 +47,7 @@
     End Sub
 
     Sub ReadRecords()
-        Dim fileName As String = "../../XexampleF21.txt"
+        'Dim fileName As String = "../../XexampleF21.txt"
         Dim recordData As String
 
 
@@ -91,28 +94,56 @@
     End Sub
 
     Sub Display()
-        Dim fileName As String = "../../CustomerData.txt"
+        'Dim fileName As String = "../../CustomerData.txt"
         Dim fileNum As Integer = FreeFile()
         Dim currentRecord As String
         Dim formattedInfo As String
 
-        FileOpen(fileNum, fileName, OpenMode.Input)
 
-        Do Until EOF(fileNum)
-            Input(fileNum, currentRecord)
-            formattedInfo &= currentRecord
-            Input(fileNum, currentRecord)
-            formattedInfo &= currentRecord
+        Try
+            FileOpen(fileNum, Me.fileName, OpenMode.Input)
 
-            DisplayListBox.Items.Add(formattedInfo)
-        Loop
+        Catch notFound As System.IO.FileNotFoundException
+            'If the file does not exist open a dialog for user to choose file
+            'OpenFileDialog.InitialDirectory 
+            OpenFileDialog.FileName = ""
+            OpenFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
 
+
+            If OpenFileDialog.ShowDialog() = 1 Then
+                Me.fileName = OpenFileDialog.FileName
+            Else
+                Me.fileName = "../../temp.txt"
+                FileOpen(fileNum, fileName, OpenMode.Append)
+                FileClose(fileNum)
+            End If
+            FileOpen(fileNum, fileName, OpenMode.Input)
+        Catch e As Exception
+            MsgBox($"{e.GetType.FullName}:{vbCrLf}{e.Message}")
+        End Try
+
+        Try
+            Do Until EOF(fileNum)
+                Input(fileNum, currentRecord)
+                If currentRecord <> "" Then
+                    SeperateRecords(currentRecord)
+                    DisplayListBox.Items.Add(currentRecord)
+                End If
+                'Input(fileNum, currentRecord)
+
+                'DisplayListBox.Items.Add(formattedInfo)
+            Loop
+        Catch
+        End Try
         FileClose(fileNum)
+
+
+
 
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
-        AddCustomer()
+        'AddCustomer()
         Display()
     End Sub
 
@@ -120,6 +151,18 @@
         Me.Close()
     End Sub
 
+    Function SeperateRecords(ByVal record As String) As String
+        Dim temp() As String
 
+        temp = Split(record, ",")
+        Try
+            FirstNameTextBox.Text = temp(0)
+            LastNameTextBox.Text = temp(1)
+            CityTextBox.Text = temp(2)
+            EmailTextBox.Text = temp(3)
+        Catch
+        End Try
+        Return ""
+    End Function
 
 End Class
