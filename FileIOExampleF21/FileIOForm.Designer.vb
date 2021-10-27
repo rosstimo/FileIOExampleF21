@@ -24,6 +24,16 @@ Partial Class FileIOForm
     Private Sub InitializeComponent()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.UserInfoGroupBox = New System.Windows.Forms.GroupBox()
+        Me.PhoneTextBox = New System.Windows.Forms.TextBox()
+        Me.PhoneLabel = New System.Windows.Forms.Label()
+        Me.StateTextBox = New System.Windows.Forms.TextBox()
+        Me.StateLabel = New System.Windows.Forms.Label()
+        Me.ZipTextBox = New System.Windows.Forms.TextBox()
+        Me.ZipLabel = New System.Windows.Forms.Label()
+        Me.CityTextBox = New System.Windows.Forms.TextBox()
+        Me.CityLabel = New System.Windows.Forms.Label()
+        Me.StreetTextBox = New System.Windows.Forms.TextBox()
+        Me.StreetLabel = New System.Windows.Forms.Label()
         Me.LastNameTextBox = New System.Windows.Forms.TextBox()
         Me.LastNameLabel = New System.Windows.Forms.Label()
         Me.FirstNameTextBox = New System.Windows.Forms.TextBox()
@@ -33,16 +43,8 @@ Partial Class FileIOForm
         Me.UpdateButton = New System.Windows.Forms.Button()
         Me.DataGroupBox = New System.Windows.Forms.GroupBox()
         Me.DisplayListBox = New System.Windows.Forms.ListBox()
-        Me.CityTextBox = New System.Windows.Forms.TextBox()
-        Me.CityLabel = New System.Windows.Forms.Label()
-        Me.StreetTextBox = New System.Windows.Forms.TextBox()
-        Me.StreetLabel = New System.Windows.Forms.Label()
-        Me.StateTextBox = New System.Windows.Forms.TextBox()
-        Me.StateLabel = New System.Windows.Forms.Label()
-        Me.ZipTextBox = New System.Windows.Forms.TextBox()
-        Me.ZipLabel = New System.Windows.Forms.Label()
-        Me.PhoneTextBox = New System.Windows.Forms.TextBox()
-        Me.PhoneLabel = New System.Windows.Forms.Label()
+        Me.EmailTextBox = New System.Windows.Forms.TextBox()
+        Me.EmailLabel = New System.Windows.Forms.Label()
         Me.UserInfoGroupBox.SuspendLayout()
         Me.ActionsGroupBox.SuspendLayout()
         Me.DataGroupBox.SuspendLayout()
@@ -54,6 +56,8 @@ Partial Class FileIOForm
         '
         'UserInfoGroupBox
         '
+        Me.UserInfoGroupBox.Controls.Add(Me.EmailTextBox)
+        Me.UserInfoGroupBox.Controls.Add(Me.EmailLabel)
         Me.UserInfoGroupBox.Controls.Add(Me.PhoneTextBox)
         Me.UserInfoGroupBox.Controls.Add(Me.PhoneLabel)
         Me.UserInfoGroupBox.Controls.Add(Me.StateTextBox)
@@ -74,6 +78,86 @@ Partial Class FileIOForm
         Me.UserInfoGroupBox.TabIndex = 0
         Me.UserInfoGroupBox.TabStop = False
         Me.UserInfoGroupBox.Text = "User Information"
+        '
+        'PhoneTextBox
+        '
+        Me.PhoneTextBox.Location = New System.Drawing.Point(66, 192)
+        Me.PhoneTextBox.Name = "PhoneTextBox"
+        Me.PhoneTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.PhoneTextBox.TabIndex = 13
+        '
+        'PhoneLabel
+        '
+        Me.PhoneLabel.AutoSize = True
+        Me.PhoneLabel.Location = New System.Drawing.Point(21, 195)
+        Me.PhoneLabel.Name = "PhoneLabel"
+        Me.PhoneLabel.Size = New System.Drawing.Size(38, 13)
+        Me.PhoneLabel.TabIndex = 12
+        Me.PhoneLabel.Text = "Phone"
+        '
+        'StateTextBox
+        '
+        Me.StateTextBox.Location = New System.Drawing.Point(66, 140)
+        Me.StateTextBox.Name = "StateTextBox"
+        Me.StateTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.StateTextBox.TabIndex = 11
+        '
+        'StateLabel
+        '
+        Me.StateLabel.AutoSize = True
+        Me.StateLabel.Location = New System.Drawing.Point(21, 147)
+        Me.StateLabel.Name = "StateLabel"
+        Me.StateLabel.Size = New System.Drawing.Size(32, 13)
+        Me.StateLabel.TabIndex = 10
+        Me.StateLabel.Text = "State"
+        '
+        'ZipTextBox
+        '
+        Me.ZipTextBox.Location = New System.Drawing.Point(66, 166)
+        Me.ZipTextBox.Name = "ZipTextBox"
+        Me.ZipTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.ZipTextBox.TabIndex = 9
+        '
+        'ZipLabel
+        '
+        Me.ZipLabel.AutoSize = True
+        Me.ZipLabel.Location = New System.Drawing.Point(21, 169)
+        Me.ZipLabel.Name = "ZipLabel"
+        Me.ZipLabel.Size = New System.Drawing.Size(22, 13)
+        Me.ZipLabel.TabIndex = 8
+        Me.ZipLabel.Text = "Zip"
+        '
+        'CityTextBox
+        '
+        Me.CityTextBox.Location = New System.Drawing.Point(66, 114)
+        Me.CityTextBox.Name = "CityTextBox"
+        Me.CityTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.CityTextBox.TabIndex = 7
+        '
+        'CityLabel
+        '
+        Me.CityLabel.AutoSize = True
+        Me.CityLabel.Location = New System.Drawing.Point(21, 121)
+        Me.CityLabel.Name = "CityLabel"
+        Me.CityLabel.Size = New System.Drawing.Size(24, 13)
+        Me.CityLabel.TabIndex = 6
+        Me.CityLabel.Text = "City"
+        '
+        'StreetTextBox
+        '
+        Me.StreetTextBox.Location = New System.Drawing.Point(66, 88)
+        Me.StreetTextBox.Name = "StreetTextBox"
+        Me.StreetTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.StreetTextBox.TabIndex = 5
+        '
+        'StreetLabel
+        '
+        Me.StreetLabel.AutoSize = True
+        Me.StreetLabel.Location = New System.Drawing.Point(21, 91)
+        Me.StreetLabel.Name = "StreetLabel"
+        Me.StreetLabel.Size = New System.Drawing.Size(35, 13)
+        Me.StreetLabel.TabIndex = 4
+        Me.StreetLabel.Text = "Street"
         '
         'LastNameTextBox
         '
@@ -152,85 +236,21 @@ Partial Class FileIOForm
         Me.DisplayListBox.Size = New System.Drawing.Size(437, 264)
         Me.DisplayListBox.TabIndex = 0
         '
-        'CityTextBox
+        'EmailTextBox
         '
-        Me.CityTextBox.Location = New System.Drawing.Point(66, 114)
-        Me.CityTextBox.Name = "CityTextBox"
-        Me.CityTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.CityTextBox.TabIndex = 7
+        Me.EmailTextBox.Location = New System.Drawing.Point(66, 218)
+        Me.EmailTextBox.Name = "EmailTextBox"
+        Me.EmailTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.EmailTextBox.TabIndex = 15
         '
-        'CityLabel
+        'EmailLabel
         '
-        Me.CityLabel.AutoSize = True
-        Me.CityLabel.Location = New System.Drawing.Point(21, 121)
-        Me.CityLabel.Name = "CityLabel"
-        Me.CityLabel.Size = New System.Drawing.Size(24, 13)
-        Me.CityLabel.TabIndex = 6
-        Me.CityLabel.Text = "City"
-        '
-        'StreetTextBox
-        '
-        Me.StreetTextBox.Location = New System.Drawing.Point(66, 88)
-        Me.StreetTextBox.Name = "StreetTextBox"
-        Me.StreetTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.StreetTextBox.TabIndex = 5
-        '
-        'StreetLabel
-        '
-        Me.StreetLabel.AutoSize = True
-        Me.StreetLabel.Location = New System.Drawing.Point(21, 91)
-        Me.StreetLabel.Name = "StreetLabel"
-        Me.StreetLabel.Size = New System.Drawing.Size(35, 13)
-        Me.StreetLabel.TabIndex = 4
-        Me.StreetLabel.Text = "Street"
-        '
-        'StateTextBox
-        '
-        Me.StateTextBox.Location = New System.Drawing.Point(66, 140)
-        Me.StateTextBox.Name = "StateTextBox"
-        Me.StateTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.StateTextBox.TabIndex = 11
-        '
-        'StateLabel
-        '
-        Me.StateLabel.AutoSize = True
-        Me.StateLabel.Location = New System.Drawing.Point(21, 147)
-        Me.StateLabel.Name = "StateLabel"
-        Me.StateLabel.Size = New System.Drawing.Size(32, 13)
-        Me.StateLabel.TabIndex = 10
-        Me.StateLabel.Text = "State"
-        '
-        'ZipTextBox
-        '
-        Me.ZipTextBox.Location = New System.Drawing.Point(66, 166)
-        Me.ZipTextBox.Name = "ZipTextBox"
-        Me.ZipTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.ZipTextBox.TabIndex = 9
-        '
-        'ZipLabel
-        '
-        Me.ZipLabel.AutoSize = True
-        Me.ZipLabel.Location = New System.Drawing.Point(21, 169)
-        Me.ZipLabel.Name = "ZipLabel"
-        Me.ZipLabel.Size = New System.Drawing.Size(22, 13)
-        Me.ZipLabel.TabIndex = 8
-        Me.ZipLabel.Text = "Zip"
-        '
-        'PhoneTextBox
-        '
-        Me.PhoneTextBox.Location = New System.Drawing.Point(66, 192)
-        Me.PhoneTextBox.Name = "PhoneTextBox"
-        Me.PhoneTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.PhoneTextBox.TabIndex = 13
-        '
-        'PhoneLabel
-        '
-        Me.PhoneLabel.AutoSize = True
-        Me.PhoneLabel.Location = New System.Drawing.Point(21, 195)
-        Me.PhoneLabel.Name = "PhoneLabel"
-        Me.PhoneLabel.Size = New System.Drawing.Size(38, 13)
-        Me.PhoneLabel.TabIndex = 12
-        Me.PhoneLabel.Text = "Phone"
+        Me.EmailLabel.AutoSize = True
+        Me.EmailLabel.Location = New System.Drawing.Point(21, 221)
+        Me.EmailLabel.Name = "EmailLabel"
+        Me.EmailLabel.Size = New System.Drawing.Size(32, 13)
+        Me.EmailLabel.TabIndex = 14
+        Me.EmailLabel.Text = "Email"
         '
         'FileIOForm
         '
@@ -271,4 +291,6 @@ Partial Class FileIOForm
     Friend WithEvents CityLabel As Label
     Friend WithEvents StreetTextBox As TextBox
     Friend WithEvents StreetLabel As Label
+    Friend WithEvents EmailTextBox As TextBox
+    Friend WithEvents EmailLabel As Label
 End Class
