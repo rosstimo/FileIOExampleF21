@@ -161,7 +161,17 @@
 
     Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
         Me.Text = CStr(DisplayListBox.SelectedIndex)
+
+        FirstNameTextBox.Text = users(DisplayListBox.SelectedIndex, 0)
+        LastNameTextBox.Text = users(DisplayListBox.SelectedIndex, 1)
+        StreetTextBox.Text = users(DisplayListBox.SelectedIndex, 2)
         CityTextBox.Text = users(DisplayListBox.SelectedIndex, 3)
+        StateTextBox.Text = users(DisplayListBox.SelectedIndex, 4)
+        ZipTextBox.Text = users(DisplayListBox.SelectedIndex, 5)
+        PhoneTextBox.Text = users(DisplayListBox.SelectedIndex, 6)
+        EmailTextBox.Text = users(DisplayListBox.SelectedIndex, 7)
+
+
     End Sub
 
 End Class
