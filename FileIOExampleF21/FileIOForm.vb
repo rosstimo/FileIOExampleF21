@@ -71,13 +71,13 @@
     End Sub
 
     Sub ChooseFile()
-        OpenFileDialog.FileName = Me.fileName
+        OpenFileDialog.FileName = ""
         OpenFileDialog.Filter = "All files (*.*)|*.*"
 
         If OpenFileDialog.ShowDialog() = 1 Then
             Me.fileName = OpenFileDialog.FileName
-            Me.Text = Me.fileName
         End If
+        Me.Text = Me.fileName
     End Sub
 
     Sub ReadLines()
@@ -129,7 +129,7 @@
         Else
             ChooseFile()
         End If
-        Me.Text = CStr(DisplayListBox.Items.Count)
+        'Me.Text = CStr(DisplayListBox.Items.Count)
     End Sub
 
     Sub Display()
@@ -155,13 +155,12 @@
         'Display()
     End Sub
 
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+    Private Sub ExitHandler(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
 
     Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
-        Me.Text = CStr(DisplayListBox.SelectedIndex)
-
+        'Me.Text = CStr(DisplayListBox.SelectedIndex)
         FirstNameTextBox.Text = users(DisplayListBox.SelectedIndex, 0)
         LastNameTextBox.Text = users(DisplayListBox.SelectedIndex, 1)
         StreetTextBox.Text = users(DisplayListBox.SelectedIndex, 2)
@@ -170,8 +169,9 @@
         ZipTextBox.Text = users(DisplayListBox.SelectedIndex, 5)
         PhoneTextBox.Text = users(DisplayListBox.SelectedIndex, 6)
         EmailTextBox.Text = users(DisplayListBox.SelectedIndex, 7)
-
-
     End Sub
 
+    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        ChooseFile()
+    End Sub
 End Class

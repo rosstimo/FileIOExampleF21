@@ -24,6 +24,8 @@ Partial Class FileIOForm
     Private Sub InitializeComponent()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.UserInfoGroupBox = New System.Windows.Forms.GroupBox()
+        Me.EmailTextBox = New System.Windows.Forms.TextBox()
+        Me.EmailLabel = New System.Windows.Forms.Label()
         Me.PhoneTextBox = New System.Windows.Forms.TextBox()
         Me.PhoneLabel = New System.Windows.Forms.Label()
         Me.StateTextBox = New System.Windows.Forms.TextBox()
@@ -43,11 +45,19 @@ Partial Class FileIOForm
         Me.UpdateButton = New System.Windows.Forms.Button()
         Me.DataGroupBox = New System.Windows.Forms.GroupBox()
         Me.DisplayListBox = New System.Windows.Forms.ListBox()
-        Me.EmailTextBox = New System.Windows.Forms.TextBox()
-        Me.EmailLabel = New System.Windows.Forms.Label()
+        Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UserInfoGroupBox.SuspendLayout()
         Me.ActionsGroupBox.SuspendLayout()
         Me.DataGroupBox.SuspendLayout()
+        Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog
@@ -72,12 +82,28 @@ Partial Class FileIOForm
         Me.UserInfoGroupBox.Controls.Add(Me.LastNameLabel)
         Me.UserInfoGroupBox.Controls.Add(Me.FirstNameTextBox)
         Me.UserInfoGroupBox.Controls.Add(Me.FirstNameLabel)
-        Me.UserInfoGroupBox.Location = New System.Drawing.Point(13, 12)
+        Me.UserInfoGroupBox.Location = New System.Drawing.Point(12, 55)
         Me.UserInfoGroupBox.Name = "UserInfoGroupBox"
         Me.UserInfoGroupBox.Size = New System.Drawing.Size(321, 320)
         Me.UserInfoGroupBox.TabIndex = 0
         Me.UserInfoGroupBox.TabStop = False
         Me.UserInfoGroupBox.Text = "User Information"
+        '
+        'EmailTextBox
+        '
+        Me.EmailTextBox.Location = New System.Drawing.Point(66, 218)
+        Me.EmailTextBox.Name = "EmailTextBox"
+        Me.EmailTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.EmailTextBox.TabIndex = 15
+        '
+        'EmailLabel
+        '
+        Me.EmailLabel.AutoSize = True
+        Me.EmailLabel.Location = New System.Drawing.Point(21, 221)
+        Me.EmailLabel.Name = "EmailLabel"
+        Me.EmailLabel.Size = New System.Drawing.Size(32, 13)
+        Me.EmailLabel.TabIndex = 14
+        Me.EmailLabel.Text = "Email"
         '
         'PhoneTextBox
         '
@@ -195,7 +221,7 @@ Partial Class FileIOForm
         '
         Me.ActionsGroupBox.Controls.Add(Me.ExitButton)
         Me.ActionsGroupBox.Controls.Add(Me.UpdateButton)
-        Me.ActionsGroupBox.Location = New System.Drawing.Point(339, 338)
+        Me.ActionsGroupBox.Location = New System.Drawing.Point(339, 420)
         Me.ActionsGroupBox.Name = "ActionsGroupBox"
         Me.ActionsGroupBox.Size = New System.Drawing.Size(449, 100)
         Me.ActionsGroupBox.TabIndex = 2
@@ -222,7 +248,7 @@ Partial Class FileIOForm
         'DataGroupBox
         '
         Me.DataGroupBox.Controls.Add(Me.DisplayListBox)
-        Me.DataGroupBox.Location = New System.Drawing.Point(339, 12)
+        Me.DataGroupBox.Location = New System.Drawing.Point(339, 55)
         Me.DataGroupBox.Name = "DataGroupBox"
         Me.DataGroupBox.Size = New System.Drawing.Size(449, 320)
         Me.DataGroupBox.TabIndex = 1
@@ -231,42 +257,89 @@ Partial Class FileIOForm
         'DisplayListBox
         '
         Me.DisplayListBox.FormattingEnabled = True
-        Me.DisplayListBox.Location = New System.Drawing.Point(6, 43)
+        Me.DisplayListBox.Location = New System.Drawing.Point(6, 36)
         Me.DisplayListBox.Name = "DisplayListBox"
         Me.DisplayListBox.Size = New System.Drawing.Size(437, 264)
         Me.DisplayListBox.TabIndex = 0
         '
-        'EmailTextBox
+        'TopMenuStrip
         '
-        Me.EmailTextBox.Location = New System.Drawing.Point(66, 218)
-        Me.EmailTextBox.Name = "EmailTextBox"
-        Me.EmailTextBox.Size = New System.Drawing.Size(221, 20)
-        Me.EmailTextBox.TabIndex = 15
+        Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.TopMenuStrip.Name = "TopMenuStrip"
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 24)
+        Me.TopMenuStrip.TabIndex = 3
+        Me.TopMenuStrip.Text = "MenuStrip1"
         '
-        'EmailLabel
+        'FileToolStripMenuItem
         '
-        Me.EmailLabel.AutoSize = True
-        Me.EmailLabel.Location = New System.Drawing.Point(21, 221)
-        Me.EmailLabel.Name = "EmailLabel"
-        Me.EmailLabel.Size = New System.Drawing.Size(32, 13)
-        Me.EmailLabel.TabIndex = 14
-        Me.EmailLabel.Text = "Email"
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Text = "&Open"
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveToolStripMenuItem.Text = "&Save"
+        '
+        'SaveAsToolStripMenuItem
+        '
+        Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveAsToolStripMenuItem.Text = "Save As"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Text = "E&xit"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'FileIOForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(800, 532)
         Me.Controls.Add(Me.ActionsGroupBox)
         Me.Controls.Add(Me.DataGroupBox)
         Me.Controls.Add(Me.UserInfoGroupBox)
+        Me.Controls.Add(Me.TopMenuStrip)
+        Me.MainMenuStrip = Me.TopMenuStrip
         Me.Name = "FileIOForm"
         Me.Text = "User Form"
         Me.UserInfoGroupBox.ResumeLayout(False)
         Me.UserInfoGroupBox.PerformLayout()
         Me.ActionsGroupBox.ResumeLayout(False)
         Me.DataGroupBox.ResumeLayout(False)
+        Me.TopMenuStrip.ResumeLayout(False)
+        Me.TopMenuStrip.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -293,4 +366,13 @@ Partial Class FileIOForm
     Friend WithEvents StreetLabel As Label
     Friend WithEvents EmailTextBox As TextBox
     Friend WithEvents EmailLabel As Label
+    Friend WithEvents TopMenuStrip As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveAsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
 End Class
