@@ -3,6 +3,12 @@
     Dim records As New List(Of String)
     Dim users(199, 8) As String
 
+    'TODO:
+    'Populate TextBoxes on selection
+    'Use temp file to update/remove records
+    'filter display results
+    'add menu to form
+
     Private Function FileExists(ByRef path As String) As Boolean
         Try
             FileLen(path)
@@ -11,7 +17,6 @@
         End Try
         Return True
     End Function
-
 
     Sub WriteFile()
         'absolute path
@@ -45,7 +50,8 @@
         FileClose(1)
 
     End Sub
-    Sub AddCustomer()
+
+    Sub AddUser()
         Dim fileName As String = "../../clean.txt"
         Dim fileNum As Integer = FreeFile()
 
@@ -73,7 +79,6 @@
             Me.Text = Me.fileName
         End If
     End Sub
-
 
     Sub ReadLines()
         Dim currentLine As String
@@ -142,25 +147,6 @@
 
     End Sub
 
-
-    Function SeperateRecords(ByVal record As String) As String
-        Dim temp() As String
-        Dim noise() As String
-        temp = Split(record, ",")
-        Try
-            noise = Split(temp(0), "$$")
-            FirstNameTextBox.Text = noise(1) 'temp(0)
-            LastNameTextBox.Text = temp(1)
-            StateTextBox.Text = "ID"
-            CityTextBox.Text = temp(2)
-            noise = Split(temp(3), Chr(34))
-            EmailTextBox.Text = noise(0) 'temp(3)
-        Catch
-        End Try
-        AddCustomer()
-        Return ""
-    End Function
-
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         'WriteFile()
         'AppendFile()
@@ -177,4 +163,5 @@
         Me.Text = CStr(DisplayListBox.SelectedIndex)
         CityTextBox.Text = users(DisplayListBox.SelectedIndex, 3)
     End Sub
+
 End Class
