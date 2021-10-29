@@ -1,6 +1,7 @@
 ﻿Public Class FileIOForm
-    Dim fileName As String = "../../UserData.txt"
+    Dim fileName As String = "../../CleanData2.txt"
     Dim records As New List(Of String)
+    Dim users(199, 8) As String
 
     Private Function FileExists(ByRef path As String) As Boolean
         Try
@@ -84,9 +85,9 @@
                 Do Until EOF(fileNum)
                     'Input(fileNum, recordData)
                     currentLine = LineInput(fileNum)
-                    SeperateRecords(currentLine)
+                    'SeperateRecords(currentLine)
                     'Me.records.Add(currentLine)
-                    'DisplayListBox.Items.Add(currentLine)
+                    DisplayListBox.Items.Add(currentLine)
                     'Console.WriteLine(currentLine)
                 Loop
             Catch e As Exception
@@ -98,60 +99,47 @@
         End If
     End Sub
 
+    Sub ReadRecords()
+        Dim currentRecord As String
+        Dim fileNum As Integer = FreeFile()
+        Dim userString As String
+        Dim user As Integer
+        If FileExists(Me.fileName) Then
+            Try
+                FileOpen(fileNum, Me.fileName, OpenMode.Input)
+                Do Until EOF(fileNum)
+                    For record = 0 To 8
+                        Input(fileNum, currentRecord)
+                        'userString &= currentRecord
+                        Me.users(user, record) = currentRecord
+                    Next
+                    'DisplayListBox.Items.Add(userString)
+                    userString = ""
+                    user += 1
+                Loop
+            Catch e As Exception
+                MsgBox($"{e.GetType.FullName}:{vbCrLf}{e.Message}")
+            End Try
+            FileClose(fileNum)
+        Else
+            ChooseFile()
+        End If
+        Me.Text = CStr(DisplayListBox.Items.Count)
+    End Sub
 
     Sub Display()
-
-        Dim fileNum As Integer = FreeFile()
-        Dim currentRecord As String
-        Dim formattedInfo As String
-
-
-        Try
-            FileOpen(fileNum, Me.fileName, OpenMode.Input)
-
-        Catch notFound As System.IO.FileNotFoundException
-            'If the file does not exist open a dialog for user to choose file
-            'OpenFileDialog.InitialDirectory 
-            OpenFileDialog.FileName = ""
-            OpenFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
-
-
-            If OpenFileDialog.ShowDialog() = 1 Then
-                Me.fileName = OpenFileDialog.FileName
-            Else
-                Me.fileName = "../../temp.txt"
-                FileOpen(fileNum, fileName, OpenMode.Append)
-                FileClose(fileNum)
-            End If
-            FileOpen(fileNum, fileName, OpenMode.Input)
-        Catch e As Exception
-            MsgBox($"{e.GetType.FullName}:{vbCrLf}{e.Message}")
-        End Try
-
-        Try
-            Do Until EOF(fileNum)
-                Input(fileNum, currentRecord)
-                If currentRecord <> "" Then
-                    SeperateRecords(currentRecord)
-                    DisplayListBox.Items.Add(currentRecord)
-                End If
-                'Input(fileNum, currentRecord)
-
-                'DisplayListBox.Items.Add(formattedInfo)
-            Loop
-        Catch
-        End Try
-        FileClose(fileNum)
-
-
-
-
+        DisplayListBox.Items.Clear()
+        For i = LBound(Me.users) To UBound(Me.users)
+            DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+        Next
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
         'AddCustomer()
-        'Display()
-        ReadLines()
+        'ReadLines()
+        ReadRecords()
+        Display()
+
     End Sub
 
 
@@ -185,4 +173,8 @@
         Me.Close()
     End Sub
 
+    Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
+        Me.Text = CStr(DisplayListBox.SelectedIndex)
+        CityTextBox.Text = users(DisplayListBox.SelectedIndex, 3)
+    End Sub
 End Class
