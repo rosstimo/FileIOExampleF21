@@ -4,10 +4,10 @@
     Dim users(199, 8) As String
 
     'TODO:
-    'Populate TextBoxes on selection
-    'Use temp file to update/remove records
     'filter display results
-    'add menu to form
+    'use temp array to align list index with array/list index
+    'Use temp file to update/remove records
+
 
     Private Function FileExists(ByRef path As String) As Boolean
         Try
@@ -135,24 +135,34 @@
     Sub Display()
         DisplayListBox.Items.Clear()
         For i = LBound(Me.users) To UBound(Me.users)
+
             DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+
         Next
     End Sub
 
+    Sub FilterByLastName()
+        DisplayListBox.Items.Clear()
+        For i = LBound(Me.users) To UBound(Me.users)
+            If InStr(users(i, 1), FilterTextBox.Text) >= 1 Then
+                DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+            End If
+        Next
+    End Sub
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
         'AddCustomer()
         'ReadLines()
         ReadRecords()
-        Display()
-
+        'Display()
+        FilterByLastName()
     End Sub
 
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         'WriteFile()
         'AppendFile()
-        'ReadRecords()
+        ReadRecords()
         'Me.Close()
-        'Display()
+        Display()
     End Sub
 
     Private Sub ExitHandler(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem.Click

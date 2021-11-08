@@ -55,10 +55,18 @@ Partial Class FileIOForm
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FilterGroupBox = New System.Windows.Forms.GroupBox()
+        Me.FirstNameRadioButton = New System.Windows.Forms.RadioButton()
+        Me.LastNameRadioButton = New System.Windows.Forms.RadioButton()
+        Me.CityRadioButton = New System.Windows.Forms.RadioButton()
+        Me.ShowAllRadioButton = New System.Windows.Forms.RadioButton()
+        Me.FilterTextBox = New System.Windows.Forms.TextBox()
+        Me.SearchLabel = New System.Windows.Forms.Label()
         Me.UserInfoGroupBox.SuspendLayout()
         Me.ActionsGroupBox.SuspendLayout()
         Me.DataGroupBox.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
+        Me.FilterGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog
@@ -222,9 +230,9 @@ Partial Class FileIOForm
         '
         Me.ActionsGroupBox.Controls.Add(Me.ExitButton)
         Me.ActionsGroupBox.Controls.Add(Me.UpdateButton)
-        Me.ActionsGroupBox.Location = New System.Drawing.Point(339, 420)
+        Me.ActionsGroupBox.Location = New System.Drawing.Point(339, 382)
         Me.ActionsGroupBox.Name = "ActionsGroupBox"
-        Me.ActionsGroupBox.Size = New System.Drawing.Size(449, 100)
+        Me.ActionsGroupBox.Size = New System.Drawing.Size(449, 132)
         Me.ActionsGroupBox.TabIndex = 2
         Me.ActionsGroupBox.TabStop = False
         '
@@ -325,14 +333,90 @@ Partial Class FileIOForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
+        '
+        'FilterGroupBox
+        '
+        Me.FilterGroupBox.Controls.Add(Me.SearchLabel)
+        Me.FilterGroupBox.Controls.Add(Me.FilterTextBox)
+        Me.FilterGroupBox.Controls.Add(Me.ShowAllRadioButton)
+        Me.FilterGroupBox.Controls.Add(Me.CityRadioButton)
+        Me.FilterGroupBox.Controls.Add(Me.LastNameRadioButton)
+        Me.FilterGroupBox.Controls.Add(Me.FirstNameRadioButton)
+        Me.FilterGroupBox.Location = New System.Drawing.Point(13, 382)
+        Me.FilterGroupBox.Name = "FilterGroupBox"
+        Me.FilterGroupBox.Size = New System.Drawing.Size(320, 132)
+        Me.FilterGroupBox.TabIndex = 4
+        Me.FilterGroupBox.TabStop = False
+        Me.FilterGroupBox.Text = "Filter"
+        '
+        'FirstNameRadioButton
+        '
+        Me.FirstNameRadioButton.AutoSize = True
+        Me.FirstNameRadioButton.Location = New System.Drawing.Point(9, 42)
+        Me.FirstNameRadioButton.Name = "FirstNameRadioButton"
+        Me.FirstNameRadioButton.Size = New System.Drawing.Size(75, 17)
+        Me.FirstNameRadioButton.TabIndex = 0
+        Me.FirstNameRadioButton.TabStop = True
+        Me.FirstNameRadioButton.Text = "First Name"
+        Me.FirstNameRadioButton.UseVisualStyleBackColor = True
+        '
+        'LastNameRadioButton
+        '
+        Me.LastNameRadioButton.AutoSize = True
+        Me.LastNameRadioButton.Location = New System.Drawing.Point(9, 65)
+        Me.LastNameRadioButton.Name = "LastNameRadioButton"
+        Me.LastNameRadioButton.Size = New System.Drawing.Size(76, 17)
+        Me.LastNameRadioButton.TabIndex = 1
+        Me.LastNameRadioButton.TabStop = True
+        Me.LastNameRadioButton.Text = "Last Name"
+        Me.LastNameRadioButton.UseVisualStyleBackColor = True
+        '
+        'CityRadioButton
+        '
+        Me.CityRadioButton.AutoSize = True
+        Me.CityRadioButton.Location = New System.Drawing.Point(9, 88)
+        Me.CityRadioButton.Name = "CityRadioButton"
+        Me.CityRadioButton.Size = New System.Drawing.Size(42, 17)
+        Me.CityRadioButton.TabIndex = 2
+        Me.CityRadioButton.TabStop = True
+        Me.CityRadioButton.Text = "City"
+        Me.CityRadioButton.UseVisualStyleBackColor = True
+        '
+        'ShowAllRadioButton
+        '
+        Me.ShowAllRadioButton.AutoSize = True
+        Me.ShowAllRadioButton.Location = New System.Drawing.Point(9, 19)
+        Me.ShowAllRadioButton.Name = "ShowAllRadioButton"
+        Me.ShowAllRadioButton.Size = New System.Drawing.Size(66, 17)
+        Me.ShowAllRadioButton.TabIndex = 3
+        Me.ShowAllRadioButton.TabStop = True
+        Me.ShowAllRadioButton.Text = "Show All"
+        Me.ShowAllRadioButton.UseVisualStyleBackColor = True
+        '
+        'FilterTextBox
+        '
+        Me.FilterTextBox.Location = New System.Drawing.Point(93, 39)
+        Me.FilterTextBox.Name = "FilterTextBox"
+        Me.FilterTextBox.Size = New System.Drawing.Size(193, 20)
+        Me.FilterTextBox.TabIndex = 4
+        '
+        'SearchLabel
+        '
+        Me.SearchLabel.AutoSize = True
+        Me.SearchLabel.Location = New System.Drawing.Point(93, 20)
+        Me.SearchLabel.Name = "SearchLabel"
+        Me.SearchLabel.Size = New System.Drawing.Size(41, 13)
+        Me.SearchLabel.TabIndex = 5
+        Me.SearchLabel.Text = "Search"
         '
         'FileIOForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 532)
+        Me.Controls.Add(Me.FilterGroupBox)
         Me.Controls.Add(Me.ActionsGroupBox)
         Me.Controls.Add(Me.DataGroupBox)
         Me.Controls.Add(Me.UserInfoGroupBox)
@@ -347,6 +431,8 @@ Partial Class FileIOForm
         Me.DataGroupBox.ResumeLayout(False)
         Me.TopMenuStrip.ResumeLayout(False)
         Me.TopMenuStrip.PerformLayout()
+        Me.FilterGroupBox.ResumeLayout(False)
+        Me.FilterGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -385,4 +471,11 @@ Partial Class FileIOForm
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FilterGroupBox As GroupBox
+    Friend WithEvents SearchLabel As Label
+    Friend WithEvents FilterTextBox As TextBox
+    Friend WithEvents ShowAllRadioButton As RadioButton
+    Friend WithEvents CityRadioButton As RadioButton
+    Friend WithEvents LastNameRadioButton As RadioButton
+    Friend WithEvents FirstNameRadioButton As RadioButton
 End Class
