@@ -146,19 +146,10 @@
 
     Sub FilterByLastName()
         Dim temp() As String
-        'Dim temp As New List(Of String)
         DisplayListBox.Items.Clear()
         For i = LBound(Me.users) To UBound(Me.users)
             If InStr(users(i, 1), FilterTextBox.Text) >= 1 Then
                 'DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
-                'temp(0) = users(i, 0)
-                'temp(1) = users(i, 1)
-                'temp(2) = users(i, 2)
-                'temp(3) = users(i, 3)
-                'temp(4) = users(i, 4)
-                'temp(5) = users(i, 5)
-                'temp(6) = users(i, 6)
-                'temp(7) = users(i, 7)
 
                 'total hack!
                 Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
@@ -177,9 +168,10 @@
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
         'AddCustomer()
         'ReadLines()
-        ReadRecords()
+        'ReadRecords()
         'Display()
         FilterByLastName()
+        'testListOfArrays()
     End Sub
 
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -214,4 +206,21 @@
         AboutForm.Show()
         Me.Hide()
     End Sub
+
+    Sub testListOfArrays()
+        Dim records As New List(Of String())
+        'had an issue with a list of arrays where it seemed to be adding duplicates of the last values
+        'assigned to the array. seemed like what was being loaded into the list was a reference to the array rather than a copy
+        'below is an attempt to avoid this by not declaring a variable and simply assigning array values during the list add.
+        For i = LBound(users) To UBound(users)
+            records.Add({users(i, 0), users(i, 1), users(i, 2), users(i, 3), users(i, 4), users(i, 5), users(i, 6), users(i, 7)})
+        Next
+
+        DisplayListBox.Items.Clear()
+        For Each record In records
+            DisplayListBox.Items.Add($"{record(0)} {record(1)}")
+        Next
+    End Sub
+
+
 End Class
