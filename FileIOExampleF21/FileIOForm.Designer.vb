@@ -56,12 +56,12 @@ Partial Class FileIOForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FilterGroupBox = New System.Windows.Forms.GroupBox()
-        Me.FirstNameRadioButton = New System.Windows.Forms.RadioButton()
-        Me.LastNameRadioButton = New System.Windows.Forms.RadioButton()
-        Me.CityRadioButton = New System.Windows.Forms.RadioButton()
-        Me.ShowAllRadioButton = New System.Windows.Forms.RadioButton()
-        Me.FilterTextBox = New System.Windows.Forms.TextBox()
         Me.SearchLabel = New System.Windows.Forms.Label()
+        Me.FilterTextBox = New System.Windows.Forms.TextBox()
+        Me.ShowAllRadioButton = New System.Windows.Forms.RadioButton()
+        Me.CityRadioButton = New System.Windows.Forms.RadioButton()
+        Me.LastNameRadioButton = New System.Windows.Forms.RadioButton()
+        Me.FirstNameRadioButton = New System.Windows.Forms.RadioButton()
         Me.UserInfoGroupBox.SuspendLayout()
         Me.ActionsGroupBox.SuspendLayout()
         Me.DataGroupBox.SuspendLayout()
@@ -290,25 +290,25 @@ Partial Class FileIOForm
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'SaveAsToolStripMenuItem
         '
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save As"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
@@ -351,38 +351,21 @@ Partial Class FileIOForm
         Me.FilterGroupBox.TabStop = False
         Me.FilterGroupBox.Text = "Filter"
         '
-        'FirstNameRadioButton
+        'SearchLabel
         '
-        Me.FirstNameRadioButton.AutoSize = True
-        Me.FirstNameRadioButton.Location = New System.Drawing.Point(9, 42)
-        Me.FirstNameRadioButton.Name = "FirstNameRadioButton"
-        Me.FirstNameRadioButton.Size = New System.Drawing.Size(75, 17)
-        Me.FirstNameRadioButton.TabIndex = 0
-        Me.FirstNameRadioButton.TabStop = True
-        Me.FirstNameRadioButton.Text = "First Name"
-        Me.FirstNameRadioButton.UseVisualStyleBackColor = True
+        Me.SearchLabel.AutoSize = True
+        Me.SearchLabel.Location = New System.Drawing.Point(93, 20)
+        Me.SearchLabel.Name = "SearchLabel"
+        Me.SearchLabel.Size = New System.Drawing.Size(41, 13)
+        Me.SearchLabel.TabIndex = 5
+        Me.SearchLabel.Text = "Search"
         '
-        'LastNameRadioButton
+        'FilterTextBox
         '
-        Me.LastNameRadioButton.AutoSize = True
-        Me.LastNameRadioButton.Location = New System.Drawing.Point(9, 65)
-        Me.LastNameRadioButton.Name = "LastNameRadioButton"
-        Me.LastNameRadioButton.Size = New System.Drawing.Size(76, 17)
-        Me.LastNameRadioButton.TabIndex = 1
-        Me.LastNameRadioButton.TabStop = True
-        Me.LastNameRadioButton.Text = "Last Name"
-        Me.LastNameRadioButton.UseVisualStyleBackColor = True
-        '
-        'CityRadioButton
-        '
-        Me.CityRadioButton.AutoSize = True
-        Me.CityRadioButton.Location = New System.Drawing.Point(9, 88)
-        Me.CityRadioButton.Name = "CityRadioButton"
-        Me.CityRadioButton.Size = New System.Drawing.Size(42, 17)
-        Me.CityRadioButton.TabIndex = 2
-        Me.CityRadioButton.TabStop = True
-        Me.CityRadioButton.Text = "City"
-        Me.CityRadioButton.UseVisualStyleBackColor = True
+        Me.FilterTextBox.Location = New System.Drawing.Point(93, 39)
+        Me.FilterTextBox.Name = "FilterTextBox"
+        Me.FilterTextBox.Size = New System.Drawing.Size(193, 20)
+        Me.FilterTextBox.TabIndex = 4
         '
         'ShowAllRadioButton
         '
@@ -395,21 +378,38 @@ Partial Class FileIOForm
         Me.ShowAllRadioButton.Text = "Show All"
         Me.ShowAllRadioButton.UseVisualStyleBackColor = True
         '
-        'FilterTextBox
+        'CityRadioButton
         '
-        Me.FilterTextBox.Location = New System.Drawing.Point(93, 39)
-        Me.FilterTextBox.Name = "FilterTextBox"
-        Me.FilterTextBox.Size = New System.Drawing.Size(193, 20)
-        Me.FilterTextBox.TabIndex = 4
+        Me.CityRadioButton.AutoSize = True
+        Me.CityRadioButton.Location = New System.Drawing.Point(9, 88)
+        Me.CityRadioButton.Name = "CityRadioButton"
+        Me.CityRadioButton.Size = New System.Drawing.Size(42, 17)
+        Me.CityRadioButton.TabIndex = 2
+        Me.CityRadioButton.TabStop = True
+        Me.CityRadioButton.Text = "City"
+        Me.CityRadioButton.UseVisualStyleBackColor = True
         '
-        'SearchLabel
+        'LastNameRadioButton
         '
-        Me.SearchLabel.AutoSize = True
-        Me.SearchLabel.Location = New System.Drawing.Point(93, 20)
-        Me.SearchLabel.Name = "SearchLabel"
-        Me.SearchLabel.Size = New System.Drawing.Size(41, 13)
-        Me.SearchLabel.TabIndex = 5
-        Me.SearchLabel.Text = "Search"
+        Me.LastNameRadioButton.AutoSize = True
+        Me.LastNameRadioButton.Location = New System.Drawing.Point(9, 65)
+        Me.LastNameRadioButton.Name = "LastNameRadioButton"
+        Me.LastNameRadioButton.Size = New System.Drawing.Size(76, 17)
+        Me.LastNameRadioButton.TabIndex = 1
+        Me.LastNameRadioButton.TabStop = True
+        Me.LastNameRadioButton.Text = "Last Name"
+        Me.LastNameRadioButton.UseVisualStyleBackColor = True
+        '
+        'FirstNameRadioButton
+        '
+        Me.FirstNameRadioButton.AutoSize = True
+        Me.FirstNameRadioButton.Location = New System.Drawing.Point(9, 42)
+        Me.FirstNameRadioButton.Name = "FirstNameRadioButton"
+        Me.FirstNameRadioButton.Size = New System.Drawing.Size(75, 17)
+        Me.FirstNameRadioButton.TabIndex = 0
+        Me.FirstNameRadioButton.TabStop = True
+        Me.FirstNameRadioButton.Text = "First Name"
+        Me.FirstNameRadioButton.UseVisualStyleBackColor = True
         '
         'FileIOForm
         '
@@ -424,7 +424,7 @@ Partial Class FileIOForm
         Me.MainMenuStrip = Me.TopMenuStrip
         Me.Name = "FileIOForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "User Form"
+        Me.Text = "w"
         Me.UserInfoGroupBox.ResumeLayout(False)
         Me.UserInfoGroupBox.PerformLayout()
         Me.ActionsGroupBox.ResumeLayout(False)

@@ -1,7 +1,10 @@
 ﻿Public Class FileIOForm
     Dim fileName As String = "../../CleanData2.txt"
-    Dim records As New List(Of String)
+    'Dim records As New List(Of String)
     Dim users(199, 8) As String
+    'Dim filteredUsers(199, 8) As String
+    Dim filteredUsers As New List(Of String) 'List(Of List(Of String)) 'List(Of String())
+
 
     'TODO:
     'filter display results
@@ -142,13 +145,35 @@
     End Sub
 
     Sub FilterByLastName()
+        Dim temp() As String
+        'Dim temp As New List(Of String)
         DisplayListBox.Items.Clear()
         For i = LBound(Me.users) To UBound(Me.users)
             If InStr(users(i, 1), FilterTextBox.Text) >= 1 Then
-                DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+                'DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+                'temp(0) = users(i, 0)
+                'temp(1) = users(i, 1)
+                'temp(2) = users(i, 2)
+                'temp(3) = users(i, 3)
+                'temp(4) = users(i, 4)
+                'temp(5) = users(i, 5)
+                'temp(6) = users(i, 6)
+                'temp(7) = users(i, 7)
+
+                'total hack!
+                Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
             End If
         Next
+
+        For Each currentUser In Me.filteredUsers
+            temp = Split(currentUser, ",")
+            DisplayListBox.Items.Add($"{temp(0)} {temp(1)}")
+        Next
+
+
+
     End Sub
+
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
         'AddCustomer()
         'ReadLines()
