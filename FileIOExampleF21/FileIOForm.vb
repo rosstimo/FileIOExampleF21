@@ -1,9 +1,7 @@
 ﻿Public Class FileIOForm
     Dim fileName As String = "../../CleanData2.txt"
-    'Dim records As New List(Of String)
     Dim users(199, 8) As String
-    'Dim filteredUsers(199, 8) As String
-    Dim filteredUsers As New List(Of String) 'List(Of List(Of String)) 'List(Of String())
+    Dim filteredUsers As New List(Of String)
 
 
     'TODO:
@@ -11,7 +9,7 @@
     'use temp array to align list index with array/list index
     'Use temp file to update/remove records
 
-
+    'FileIO
     Private Function FileExists(ByRef path As String) As Boolean
         Try
             FileLen(path)
@@ -135,67 +133,92 @@
         'Me.Text = CStr(DisplayListBox.Items.Count)
     End Sub
 
-    Sub Display()
-        DisplayListBox.Items.Clear()
+    'Filter
+    Function FilterSelection() As Integer
+        Dim selection As Integer = -1
+        Select Case True
+            Case FirstNameRadioButton.Checked
+                selection = 0
+            Case LastNameRadioButton.Checked
+                selection = 1
+            Case CityRadioButton.Checked
+                selection = 3
+        End Select
+        Return selection
+    End Function
+
+    Sub FilterByFirstName()
         For i = LBound(Me.users) To UBound(Me.users)
-
-            DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
-
+            If InStr(users(i, 0), FilterTextBox.Text) >= 1 Then
+                Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
+            End If
         Next
     End Sub
 
     Sub FilterByLastName()
-        Dim temp() As String
-        DisplayListBox.Items.Clear()
         For i = LBound(Me.users) To UBound(Me.users)
             If InStr(users(i, 1), FilterTextBox.Text) >= 1 Then
-                'DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
-
-                'total hack!
                 Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
             End If
         Next
+    End Sub
+
+    Sub FilterResults()
+        'TODO add case sensitive check box CompareMethod.Text = 1 CompareMethod.Binary = 0
+        Me.filteredUsers.Clear()
+        For i = LBound(Me.users) To UBound(Me.users)
+            If InStr(users(i, FilterSelection()), FilterTextBox.Text, CompareMethod.Text) >= 1 Then
+                Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
+            End If
+        Next
+    End Sub
+
+    'Display
+    Sub Display()
+        DisplayListBox.Items.Clear()
+        Dim temp() As String
+        'For i = LBound(Me.users) To UBound(Me.users)
+        '    DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
+        'Next
 
         For Each currentUser In Me.filteredUsers
             temp = Split(currentUser, ",")
             DisplayListBox.Items.Add($"{temp(0)} {temp(1)}")
         Next
 
-
-
     End Sub
 
-    Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
-        'AddCustomer()
-        'ReadLines()
-        'ReadRecords()
-        'Display()
-        FilterByLastName()
-        'testListOfArrays()
+    Sub SetDefaults()
+        ShowAllRadioButton.Checked = True
     End Sub
 
+    'Event Handlers
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        SetDefaults()
         'WriteFile()
         'AppendFile()
         ReadRecords()
         'Me.Close()
+        'Display()
+    End Sub
+
+    Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
+        FilterResults()
         Display()
     End Sub
 
-    Private Sub ExitHandler(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-
     Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
-        'Me.Text = CStr(DisplayListBox.SelectedIndex)
-        FirstNameTextBox.Text = users(DisplayListBox.SelectedIndex, 0)
-        LastNameTextBox.Text = users(DisplayListBox.SelectedIndex, 1)
-        StreetTextBox.Text = users(DisplayListBox.SelectedIndex, 2)
-        CityTextBox.Text = users(DisplayListBox.SelectedIndex, 3)
-        StateTextBox.Text = users(DisplayListBox.SelectedIndex, 4)
-        ZipTextBox.Text = users(DisplayListBox.SelectedIndex, 5)
-        PhoneTextBox.Text = users(DisplayListBox.SelectedIndex, 6)
-        EmailTextBox.Text = users(DisplayListBox.SelectedIndex, 7)
+        Dim temp() As String
+        temp = Split(filteredUsers.Item(DisplayListBox.SelectedIndex), ",")
+
+        FirstNameTextBox.Text = temp(0)
+        LastNameTextBox.Text = temp(1)
+        StreetTextBox.Text = temp(2)
+        CityTextBox.Text = temp(3)
+        StateTextBox.Text = temp(4)
+        ZipTextBox.Text = temp(5)
+        PhoneTextBox.Text = temp(6)
+        EmailTextBox.Text = temp(7)
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
@@ -206,6 +229,11 @@
         AboutForm.Show()
         Me.Hide()
     End Sub
+
+    Private Sub ExitHandler(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+    'Testing
 
     Sub testListOfArrays()
         Dim records As New List(Of String())
