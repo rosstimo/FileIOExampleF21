@@ -164,28 +164,29 @@
     End Sub
 
     Sub FilterResults()
-        'TODO add case sensitive check box CompareMethod.Text = 1 CompareMethod.Binary = 0
         Me.filteredUsers.Clear()
-        For i = LBound(Me.users) To UBound(Me.users)
-            If InStr(users(i, FilterSelection()), FilterTextBox.Text, CompareMethod.Text) >= 1 Then
+        If FilterSelection() = -1 Then
+            For i = LBound(Me.users) To UBound(Me.users)
                 Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
-            End If
-        Next
+            Next
+        Else
+            'TODO add case sensitive check box CompareMethod.Text = 1 CompareMethod.Binary = 0
+            For i = LBound(Me.users) To UBound(Me.users)
+                If InStr(users(i, FilterSelection()), FilterTextBox.Text, CompareMethod.Text) >= 1 Then
+                    Me.filteredUsers.Add($"{users(i, 0)},{users(i, 1)},{users(i, 2)},{users(i, 3)},{users(i, 4)},{users(i, 5)},{users(i, 6)},{users(i, 7)}")
+                End If
+            Next
+        End If
     End Sub
 
     'Display
     Sub Display()
         DisplayListBox.Items.Clear()
         Dim temp() As String
-        'For i = LBound(Me.users) To UBound(Me.users)
-        '    DisplayListBox.Items.Add($"{users(i, 0)} {users(i, 1)} ")
-        'Next
-
         For Each currentUser In Me.filteredUsers
             temp = Split(currentUser, ",")
             DisplayListBox.Items.Add($"{temp(0)} {temp(1)}")
         Next
-
     End Sub
 
     Sub SetDefaults()
@@ -195,11 +196,9 @@
     'Event Handlers
     Private Sub FileIOForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetDefaults()
-        'WriteFile()
-        'AppendFile()
         ReadRecords()
-        'Me.Close()
-        'Display()
+        FilterResults()
+        Display()
     End Sub
 
     Private Sub UpdateButton_Click(sender As Object, e As EventArgs) Handles UpdateButton.Click
@@ -209,6 +208,7 @@
 
     Private Sub DisplayListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DisplayListBox.SelectedIndexChanged
         Dim temp() As String
+
         temp = Split(filteredUsers.Item(DisplayListBox.SelectedIndex), ",")
 
         FirstNameTextBox.Text = temp(0)
